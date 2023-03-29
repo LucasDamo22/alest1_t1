@@ -68,7 +68,7 @@ std::string alg_3(int n)
             {
                 res = res + abs(j - i);
                 op_count++;
-                SS << op_count << ";" << res << std::endl;
+                SS << i << ";" << op_count << ";" << res << std::endl;
             }
         }
     }
@@ -126,80 +126,122 @@ std::string alg_5(int n)
     return SS.str();
 }
 
+std::string alg_teste(int n)
+{
+    int op_count = 0;
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    int res = 0;
+    std::stringstream SS;
+
+    for (i = 1; i <= n * n; i += 1)
+    {
+        for (j = 1; j <= i; j += 2)
+        {
+            for (k = n + 1; k <= 2 * i; k += i * j)
+            {
+                res = res + k + 1;
+                op_count++;
+            }
+        }
+    }
+    SS << n << ";" << op_count << std::endl;
+    return SS.str();
+}
+
 int main(int argc, char **argv)
 {
 
-    
-    std::ofstream arqOutAlg_2;
-    std::ofstream arqOutAlg_3;
-    std::ofstream arqOutAlg_4;
-    std::ofstream arqOutAlg_5;
-    std::string file1 = "./data/Algoritmo1.csv";
-    std::string file2 = "./data/Algoritmo2.csv";
-    std::string file3 = "./data/Algoritmo3.csv";
-    std::string file4 = "./data/Algoritmo4.csv";
-    std::string file5 = "./data/Algoritmo5.csv";
-
-    std::ofstream arqOutAlg_1;
-    file1.c_str();
-    arqOutAlg_1.open(file1.c_str(), std::ios::out);
-    if (!arqOutAlg_1.is_open())
+    if (atoi(argv[1]) == 1)
     {
-        std::cout << "Erro na geração do arquivo 1";
-        return 1;
+        std::ofstream arqOutAlg_1;
+        std::string file1 = "./data/Algoritmo1.csv";
+        arqOutAlg_1.open(file1.c_str(), std::ios::out);
+        if (!arqOutAlg_1.is_open())
+        {
+            std::cout << "Erro na geração do arquivo 1";
+            return 1;
+        }
+        for (int i = 1; i < atoi(argv[2]); i++)
+        {
+            arqOutAlg_1 << alg_1(i);
+        }
+
+        arqOutAlg_1.close();
     }
-    arqOutAlg_1 << alg_1(atoi(argv[1]));
-    arqOutAlg_1.close();
-
-
-
-    arqOutAlg_2.open(file2.c_str(), std::ios::out);
-    if (!arqOutAlg_2.is_open())
+    if (atoi(argv[1]) == 2)
     {
-        std::cout << "Erro na geração do arquivo 2";
-        return 1;
+        std::ofstream arqOutAlg_2;
+        std::string file2 = "./data/Algoritmo2.csv";
+        arqOutAlg_2.open(file2.c_str(), std::ios::out);
+        if (!arqOutAlg_2.is_open())
+        {
+            std::cout << "Erro na geração do arquivo 2";
+            return 1;
+        }
+        for (int i = 1; i < atoi(argv[2]); i++)
+        {
+            arqOutAlg_2 << alg_2(i);
+        }
+        arqOutAlg_2.close();
     }
-    arqOutAlg_2 << alg_2(atoi(argv[1]));
-    arqOutAlg_2.close();
-
-
-    file3.c_str();
-    arqOutAlg_3.open(file3.c_str(), std::ios::out);
-    if (!arqOutAlg_3.is_open())
+    if (atoi(argv[1]) == 3)
     {
-        std::cout << "Erro na geração do arquivo 3";
-        return 1;
+        std::ofstream arqOutAlg_3;
+        std::string file3 = "./data/Algoritmo3.csv";
+        arqOutAlg_3.open(file3.c_str(), std::ios::out);
+        if (!arqOutAlg_3.is_open())
+        {
+            std::cout << "Erro na geração do arquivo 3";
+            return 1;
+        }
+        arqOutAlg_3 << alg_3(atoi(argv[2]));
+        arqOutAlg_3.close();
     }
-    arqOutAlg_3 << alg_3(atoi(argv[1]));
-    arqOutAlg_3.close();
-
-
-
-    arqOutAlg_4.open(file4.c_str(), std::ios::out);
-    if (!arqOutAlg_4.is_open())
+    if (atoi(argv[1]) == 4)
     {
-        std::cout << "Erro na geração do arquivo 4";
-        return 1;
+        std::ofstream arqOutAlg_4;
+        std::string file4 = "./data/Algoritmo4.csv";
+        arqOutAlg_4.open(file4.c_str(), std::ios::out);
+        if (!arqOutAlg_4.is_open())
+        {
+            std::cout << "Erro na geração do arquivo 4";
+            return 1;
+        }
+        arqOutAlg_4 << alg_4(atoi(argv[2]));
+        arqOutAlg_4.close();
     }
-    arqOutAlg_4 << alg_4(atoi(argv[1]));
-    arqOutAlg_4.close();
-
-
-
-    arqOutAlg_5.open(file5.c_str(), std::ios::out);
-    if (!arqOutAlg_5.is_open())
+    if (atoi(argv[1]) == 5)
     {
-        std::cout << "Erro na geração do arquivo 5";
-        return 1;
+        std::ofstream arqOutAlg_5;
+        std::string file5 = "./data/Algoritmo5.csv";
+        arqOutAlg_5.open(file5.c_str(), std::ios::out);
+        if (!arqOutAlg_5.is_open())
+        {
+            std::cout << "Erro na geração do arquivo 5";
+            return 1;
+        }
+        arqOutAlg_5 << alg_5(atoi(argv[2]));
+        arqOutAlg_5.close();
     }
-    arqOutAlg_5 << alg_5(atoi(argv[1]));
-    arqOutAlg_5.close();
 
-    std::cout<< "Arquivos enviados para a pasta ./data" <<std::endl;
-// std::cout << alg_1(4);
-// std::cout << alg_2(4);
-// std::cout << alg_3(10);
-// std::cout << alg_4(10);
-// std::cout << alg_5(10);
-    return 0;
+    if (atoi(argv[1]) == 6)
+    {
+        std::ofstream arqOutAlg_teste;
+        std::string fileteste = "./data/AlgoritmoTeste.csv";
+        arqOutAlg_teste.open(fileteste.c_str(), std::ios::out);
+        if (!arqOutAlg_teste.is_open())
+        {
+            std::cout << "Erro na geração do arquivo 5";
+            return 1;
+        }
+        for (int i = 1; i < 100; i++)
+        {
+            arqOutAlg_teste << alg_teste(i);
+        }
+        arqOutAlg_teste.close();
+    }
+
+    std::cout << "Arquivos enviados para a pasta ./data" << std::endl;
 }
