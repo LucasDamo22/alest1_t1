@@ -9,22 +9,19 @@ std::string alg_1(int n)
     int op_count = 0;
     int i, j, k, res = 0;
     std::stringstream SS;
+
     for (i = 0; i <= n + 1; i++)
     {
         for (j = 1; j <= i * i; j += i + 1)
         {
-            // std::cout<<j<<std::endl;
             for (k = i / 2; k <= n + j; k += 2)
             {
-
-                // std::cout<<k<<std::endl;
                 res = res + n - 1;
                 op_count++;
-
-                SS << op_count << ";" << res << std::endl;
             }
         }
     }
+    SS << n << ";" << op_count << std::endl;
     return SS.str();
 }
 
@@ -36,6 +33,7 @@ std::string alg_2(int n)
     int k = 0;
     int res = 0;
     std::stringstream SS;
+
     for (i = n; i <= n; i += i / 2 + 1)
     {
         for (j = i / 2; j <= i * i; j += i + 1)
@@ -44,11 +42,10 @@ std::string alg_2(int n)
             {
                 res = res + n;
                 op_count++;
-
-                SS << op_count << ";" << res << std::endl;
             }
         }
     }
+    SS << n << ";" << op_count << std::endl;
     return SS.str();
 }
 std::string alg_3(int n)
@@ -68,11 +65,10 @@ std::string alg_3(int n)
             {
                 res = res + abs(j - i);
                 op_count++;
-                SS << i << ";" << op_count << ";" << res << std::endl;
             }
         }
     }
-
+    SS << n << ";" << op_count << std::endl;
     return SS.str();
 }
 
@@ -93,11 +89,10 @@ std::string alg_4(int n)
             {
                 res = res + 1;
                 op_count++;
-                SS << op_count << ";" << res << std::endl;
             }
         }
     }
-
+    SS << n << ";" << op_count << std::endl;
     return SS.str();
 }
 
@@ -118,10 +113,11 @@ std::string alg_5(int n)
             {
                 res = res + k + 1;
                 op_count++;
-                SS << op_count << ";" << res << std::endl;
             }
         }
     }
+    
+    SS << n << ";" << op_count << std::endl;
 
     return SS.str();
 }
@@ -152,6 +148,15 @@ std::string alg_teste(int n)
 
 int main(int argc, char **argv)
 {
+    if(atoi(argv[1])<1 || atoi(argv[1])>5){
+        std::cout<< "The value doesnt corespond to any algorithm"<<std::endl<< "Please select a value between 1 and 5"<<std::endl;
+        return 1;
+    }
+    if(atoi(argv[2])<10 ){
+        std::cout<< "An N value lower than 10 wont generate sufficient data to work with :( "<<std::endl<< "Please insert a n value than is >=5 "<<std::endl<<"(50 is a great value)"<<std::endl;
+        return 1;
+    }
+
 
     if (atoi(argv[1]) == 1)
     {
@@ -196,7 +201,10 @@ int main(int argc, char **argv)
             std::cout << "Erro na geração do arquivo 3";
             return 1;
         }
-        arqOutAlg_3 << alg_3(atoi(argv[2]));
+        for (int i = 1; i < atoi(argv[2]); i++)
+        {
+            arqOutAlg_3 << alg_3(i);
+        }
         arqOutAlg_3.close();
     }
     if (atoi(argv[1]) == 4)
@@ -209,7 +217,10 @@ int main(int argc, char **argv)
             std::cout << "Erro na geração do arquivo 4";
             return 1;
         }
-        arqOutAlg_4 << alg_4(atoi(argv[2]));
+        for (int i = 1; i < atoi(argv[2]); i++)
+        {
+            arqOutAlg_4 << alg_4(i);
+        }
         arqOutAlg_4.close();
     }
     if (atoi(argv[1]) == 5)
@@ -222,7 +233,10 @@ int main(int argc, char **argv)
             std::cout << "Erro na geração do arquivo 5";
             return 1;
         }
-        arqOutAlg_5 << alg_5(atoi(argv[2]));
+        for (int i = 1; i < atoi(argv[2]); i++)
+        {
+            arqOutAlg_5 << alg_5(i);
+        }
         arqOutAlg_5.close();
     }
 
@@ -244,4 +258,6 @@ int main(int argc, char **argv)
     }
 
     std::cout << "Arquivos enviados para a pasta ./data" << std::endl;
+
+    return 0;
 }
