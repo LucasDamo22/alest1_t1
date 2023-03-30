@@ -1,1 +1,0 @@
-Source code (*.c, *.cpp) files go here. Keep naming convention (camel case) to avoid disrupting any of the Makefile recipies.

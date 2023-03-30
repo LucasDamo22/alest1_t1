@@ -1,1 +1,0 @@
-This folder stores all header files for the project. Do not include library headers here, use the lib folder instead. Header files must have the extension ".h", not ".hpp". Header files must contain classes, enums, and function propotypes. DO NOT put any compilable code into those files.

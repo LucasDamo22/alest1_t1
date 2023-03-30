@@ -1,1 +1,0 @@
-The output of your compilation goes here. For instance, the compiler will generate executable (*.exe, or no extension if on linux) here, as well as binary libraries (*.a, *.o, *.dll, *.so).
